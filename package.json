@@ -4,6 +4,7 @@
   "devDependencies": {
     "eslint": "^3.7.0",
     "eslint-plugin-react": "^6.3.0",
+    "gh-pages": "^2.2.0",
     "react-scripts": "0.6.1"
   },
   "dependencies": {
@@ -19,9 +20,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+    
   },
-  "homepage": "https://zacqary.github.io/rubix"
+  "homepage": "https://heyaitsbea.github.io/rubix"
 }
