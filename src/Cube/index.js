@@ -5,19 +5,19 @@ const CUBE_COLORS = [
   '#39c', '#927fb9', '#edbe01', '#dedede', '#e55447', '#73bf4c'
 ];
 
-export default ({type, dir, depth, colors}) => {
+export default ({type, dir, depth, colors}) => {  // takes in the parametesr of the cube?
   const innerFaceKeys = ['front', 'left', 'right', 'top'];
   const children = [];
 
-  if (depth === 0) {
-    children.push(<div className='Cube-face front' key='front'/>);
-  } else if (depth === 2) {
+  if (depth === 0) { // add side 1
+    children.push(<div className='Cube-face front' key='front'/>); //
+  } else if (depth === 2) { // add side 3
     children.push(<div className='Cube-face back' key='back'/>);
   }
 
-  if (type === 'edge') {
+  if (type === 'edge') { // if you're at an edge, add a face
     children.push(<div className={`Cube-face ${dir}`} key={dir}/>);
-  } else if (type === 'corner') {
+  } else if (type === 'corner') {  
     children.push(<div className={`Cube-face ${dir.x}`} key={dir.x}/>);
     children.push(<div className={`Cube-face ${dir.y}`} key={dir.y}/>);
   }
@@ -84,7 +84,7 @@ export default ({type, dir, depth, colors}) => {
     }
   })() * CUBE_SIZE_PX - (CUBE_SIZE_PX / 2);
 
-  return (
+  return ( // return a cube
     <div className='Cube' style={{
       position: 'absolute',
       top: 0,

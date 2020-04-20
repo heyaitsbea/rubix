@@ -1,6 +1,9 @@
 import React from 'react';
+
+
+
 export default ({onClick}) => (
-  <svg className='ShuffleButton'
+  <svg opacity = ".25" className='ShuffleButton'
        viewBox='0 0 182.426 184.25' width='182.426px' height='184.25px'>
     <g className='ShuffleButton-target'  onClick={onClick}>
       <path fill='#C5D2EC' stroke='#4B60A4' stroke-width='10' stroke-miterlimit='10' d='M159.55,180.083
@@ -40,4 +43,5 @@ export default ({onClick}) => (
         l-9.337,9.337l11.79,11.79l-1.345,1.346l-13.42-13.42l22.393-22.393L166.756,144.304z'/>
     </g>
   </svg>
+
 );
