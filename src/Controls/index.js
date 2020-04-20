@@ -18,6 +18,9 @@ export var changeSelected = 0;
 
 export var toggleThrough = () => {
 
+
+  document.getElementById("toggle").setAttribute("background-color", "#b3e3c9");
+
   let controls2 = document.getElementsByTagName("g");
  
 
@@ -72,13 +75,10 @@ export var toggleThrough = () => {
         document.getElementsByClassName("Arrow")[selected - 1].setAttribute("opacity", .25);
         document.getElementsByClassName("Arrow")[selected].setAttribute("opacity", 1);
         if (selected >= 0 && selected <= 5) {
-          console.log(selected + " , 1");
           document.getElementById("note").innerHTML = "Spin slice over x axis";
         } else if (selected >= 6 && selected <= 11) {
-          console.log(selected + ", 2");
           document.getElementById("note").innerHTML = "Spin slice over y axis";
         } else if (selected >= 12 && selected <= 24) {
-          console.log(selected + " , 3");
           document.getElementById("note").innerHTML = "Spin slice over z axis";
         } else {
 
@@ -100,18 +100,12 @@ export var selectChoice = () => {
  //console.log(document.getElementById("zero"));
  
  if (selected >= 0 && selected <= 17) {
-   console.log("normal arrow");
-   console.log(document.getElementsByClassName("Arrow")[selected].getAttribute("opacity"));
   actions2.spinSlice(slices[selected], forwards[selected]);
-  console.log("selected is now " + selected);
-  console.log("set");
  } else { // if selected was in it 
   // must be controlling shuffle or the arrows
-  console.log("other arrows");
     changeSelected = selected - 18; // get value of changeselected
   
-    //console.log(actions2.rotate(rotateAxis[changeSelected], rotateBln[changeSelected]));
-  console.log("changeselected is " + changeSelected);     
+    //console.log(actions2.rotate(rotateAxis[changeSelected], rotateBln[changeSelected]));   
     if (selected == 24) {
       actions2.randomize();
     } else {
@@ -124,9 +118,7 @@ export var selectChoice = () => {
 export default ({ actions, disabled }) => {
   const Arrow = buildArrow(actions.spinSlice); // run spinslice
 
-  console.log("selected val - " + selected);
- console.log(document.getElementsByClassName("Arrow")[0]);
-  
+ 
 
 actions2 = actions;
   return (
