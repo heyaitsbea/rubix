@@ -5,6 +5,7 @@ import RotateArrows from './RotateArrows';
 import ShuffleButton from './ShuffleButton';
 
 export var selected = 0;
+export var justChose;
 export var beginningOfGame = true;
 
 export var slices = [0, 1, 2, 0, 1, 2, 3, 4, 5, 3, 4, 5, 6, 7, 8, 6, 7, 8];
@@ -15,9 +16,12 @@ export var actions2;
 //export var actionsRotate;
 export var changeSelected = 0;
 
+export var startUp = true;
 
-export var toggleThrough = () => {
 
+
+
+export var toggleThrough = (e) => {
 
   document.getElementById("toggle").setAttribute("background-color", "#b3e3c9");
 
@@ -29,7 +33,12 @@ export var toggleThrough = () => {
     document.getElementsByClassName("Arrow")[selected].setAttribute("opacity", 1);
     beginningOfGame = false;
   } else { // not
-    selected++;
+    if (justChose) {
+      justChose = false;
+    } else {
+      selected++;
+    }
+    
     
   if (selected != 0) { // if it's not = to 0
    // alert("hi");
@@ -94,11 +103,6 @@ export var toggleThrough = () => {
 };
 
 export var selectChoice = () => {
- //console.log(document.getElementsByClassName("Arrow")[selected].getAttribute("opacity"));
-
-
- //console.log(document.getElementById("zero"));
- 
  if (selected >= 0 && selected <= 17) {
   actions2.spinSlice(slices[selected], forwards[selected]);
  } else { // if selected was in it 
@@ -107,25 +111,28 @@ export var selectChoice = () => {
   
     //console.log(actions2.rotate(rotateAxis[changeSelected], rotateBln[changeSelected]));   
     if (selected == 24) {
+      
       actions2.randomize();
+     
     } else {
       actions2.rotateCube(rotateAxis[changeSelected], rotateBln[changeSelected]);
     }
  }
    
+ justChose = true;
 }
 
 export default ({ actions, disabled }) => {
   const Arrow = buildArrow(actions.spinSlice); // run spinslice
 
- 
-
 actions2 = actions;
+shuffleAtStart();
+setListeners();
+
   return (
+    
     <section className={classNames('Controls', {
       'disabled': disabled
-
-
       
     })}>
       {/* Spin Z forward */} 
@@ -216,15 +223,13 @@ actions2 = actions;
           transform: 'translate(140px, 260px) rotate(220deg)'
         }} />
 
-
       <div style={{ position: 'absolute', top: '35px', left: '65px', transform: 'scale(1.05)' }}>
         <RotateArrows rotate={actions.rotateCube} />
       </div>
 
 
       <div style={{ position: 'absolute', top: '450px', left: '40px' }}>
-        <ShuffleButton onClick={actions.randomize} />
-       
+        <ShuffleButton onClick={actions.randomize} />  
       </div>
 
       <button id = "toggle" onClick={toggleThrough} 
@@ -243,7 +248,49 @@ actions2 = actions;
       </div>
      
     </section>
-    
-
   );
+
 };
+
+export var keyHandler = function (e) {
+  if  (e.repeat) {
+    return;
+  }
+  var keyCode = e.keyCode;
+  if (keyCode == 32) { // toggle through options
+    toggleThrough();
+  } else if (keyCode == 13) {
+    selectChoice();
+  } else {
+
+  }
+
+}
+export var setListeners = function () {   // only sets at the beginning
+  //document.addEventListener("keydown", moveStones2, false);
+    // document.getElementById('8').style.backgroundColor = "#abebb4";
+    // document.getElementById('8').style.border = "#aaa9ad";
+    // highlighted = 8;
+    
+    document.addEventListener("keydown", keyHandler, false);
+    // document.getElementById("toggle").addEventListener('click', function (eventObject) {toggleOptions(highlighted)})
+
+    // document.getElementById("select").addEventListener('click', function (eventObject) {selectOption ()})
+
+};
+
+
+// export var preserveSelected = () => {
+//   document.getElementsByClassName("Arrow")[selected].setAttribute("opacity", 1);
+// }
+export var shuffleAtStart = () => {
+  if (startUp) {
+    actions2.randomize();
+    alert("Use spacebar to toggle and enter to select, or click two buttons on screen. Hit enter to continue to cube.")
+    startUp = false;
+  } 
+  
+}
+
+
+// shuffleAtStart();

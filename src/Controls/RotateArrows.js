@@ -2,7 +2,7 @@ import React from 'react';
 export default ({rotate}) => (
   <svg className='RotateArrows' // is a class of all
       width='740px'height='650px' viewBox='0 0 727.464 649.468'  >
-      <g  opacity = ".25" onClick={() => rotate('x', false)}  >  
+      <g opacity = ".25" onClick={() => rotate('x', false)}  >  
         <polygon fill='transparent' points='617.417,111.892 655.393,139.9 674.013,186.892 698.393,202.892 719.763,198.831
         719.763,143.892 674.013,107.331 635.393,96.892 			' />
   		  <path fill='#4a5fa3' d='M628.263,107.331c0,0,68.298,20.261,68.298,68.298l-19.28-19.28l28.758,42.482l13.725-42.482l-11.11,18.3
