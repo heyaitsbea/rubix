@@ -33,7 +33,7 @@ export var toggleThrough = (e) => {
     document.getElementsByClassName("Arrow")[selected].setAttribute("opacity", 1);
     beginningOfGame = false;
   } else { // not
-    if (justChose) {
+    if (justChose && (selected >= 0 && selected <= 17)) {
       justChose = false;
     } else {
       selected++;
@@ -109,7 +109,7 @@ export var selectChoice = () => {
   // must be controlling shuffle or the arrows
     changeSelected = selected - 18; // get value of changeselected
   
-    //console.log(actions2.rotate(rotateAxis[changeSelected], rotateBln[changeSelected]));   
+ 
     if (selected == 24) {
       
       actions2.randomize();
