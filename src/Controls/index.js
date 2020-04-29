@@ -40,9 +40,8 @@ export var toggleThrough = (e) => {
     }
     
     
-  if (selected != 0) { // if it's not = to 0
-   // alert("hi");
-    if (18 <= selected && selected < 25) {  // HANDLE CONTROLS 2
+  if (selected != 0) { 
+    if (18 <= selected && selected < 25) {  
     // 18 - 0
     // 19 - 1 
     // 20 - 2
